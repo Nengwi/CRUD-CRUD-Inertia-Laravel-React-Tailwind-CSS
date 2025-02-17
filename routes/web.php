@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PostController; // Ini adalah pernyataan yang mengimpor (menggunakan) kelas PostController yang terletak dalam namespace App\Http\Controllers.//
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -28,7 +29,8 @@ Route::get('/', function () {
 Route::get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
+Route::resource('posts', PostController::class)->middleware(['auth', 'verified']); // Ini menghasilkan berbagai rute standar yang diperlukan untuk mengelola posting, seperti rute untuk menampilkan, membuat, menyimpan, mengedit, dan menghapus posting.//
+                                                // Middleware adalah filter yang digunakan untuk memproses permintaan sebelum mencapai tindakan yang sesuai di PostController. //      
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -36,3 +38,4 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
