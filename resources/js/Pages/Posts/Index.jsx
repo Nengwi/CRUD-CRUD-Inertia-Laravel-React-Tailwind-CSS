@@ -10,8 +10,7 @@ export default function Dashboard(props) { //  Ini adalah definisi komponen Dash
         }
     }
     return (
-        <AuthenticatedLayout auth={props.auth} user={props.auth.user} errors={props.errors} header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">All Posts</h2>}> // Ini adalah komponen layout yang digunakan sebagai tata letak (layout) untuk halaman indeks posting (Posts). Ini menerima properti seperti auth, user, dan errors dari props.//
-            <Head title="Posts" /> //  Ini mengatur judul halaman web menjadi "Posts" menggunakan komponen Head//
+        <AuthenticatedLayout auth={props.auth} user={props.auth.user} errors={props.errors} header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">All Posts</h2>}>
             <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 {props.flash.success && (
                     <div className="text-center bg-gray-300 font-bold text-blue-900 p-1">
@@ -28,7 +27,7 @@ export default function Dashboard(props) { //  Ini adalah definisi komponen Dash
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                                     </svg>
-                                    <span className="ml-2">New Post</span> // Tombol "New Post": Ada tombol "New Post" yang mengarahkan pengguna ke halaman pembuatan posting baru ketika diklik.//
+                                    <span className="ml-2">New Post</span>
                                 </Link>
                             </div>
 
