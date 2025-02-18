@@ -2,15 +2,15 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, useForm, usePage, Link } from '@inertiajs/react';
 
 export default function Dashboard(props) {
-    const { post } = usePage().props; //Baris ini mengambil properti post dari objek props yang diterima oleh komponen.Baris ini mengambil properti post dari objek props yang diterima oleh komponen.//
-    const { data, setData, put, errors } = useForm({ // Baris ini mengambil properti post dari objek props yang diterima oleh komponen.//
-        title: post.title || "", // Ini menginisialisasi nilai title dalam formulir pengeditan dengan nilai judul posting yang ada (post.title) atau dengan string kosong ("") jika post.title tidak ada.//      
-        body: post.body || "", // Ini menginisialisasi nilai body dalam formulir pengeditan dengan nilai isi posting yang ada (post.body) atau dengan string kosong ("") jika post.body tidak ada.//
+    const { post } = usePage().props; // Baris ini mengambil properti post dari objek props yang diterima oleh komponen. Properti post berisi data posting yang akan diedit. Data ini akan digunakan untuk mengisi formulir pengeditan.
+    const { data, setData, put, errors } = useForm({ //: Ini adalah cara untuk mengelola dan mengikat data dalam formulir pengeditan. Variabel data berisi data yang akan dimasukkan dalam formulir pengeditan (title dan body), setData digunakan untuk mengubah data, put digunakan untuk mengirim data formulir pengeditan ke server untuk pembaruan, dan errors berisi pesan kesalahan validasi yang akan ditampilkan jika ada kesalahan input.
+        title: post.title || "", //Ini menginisialisasi nilai title dalam formulir pengeditan dengan nilai judul posting yang ada (post.title) atau dengan string kosong ("") jika post.title tidak ada.
+        body: post.body || "", //Ini menginisialisasi nilai body dalam formulir pengeditan dengan nilai isi posting yang ada (post.body) atau dengan string kosong ("") jika post.body tidak ada.
     });
 
-    function handleSubmit(e) { //Ini adalah fungsi yang akan dipanggil saat formulir pengeditan disubmit. Fungsi ini mencegah perilaku default dari event submit dengan e.preventDefault() dan kemudian memanggil put(route("posts.update", post.id)). Ini akan mengirimkan data formulir pengeditan ke server untuk menyimpan perubahan pada posting yang ada.
+    function handleSubmit(e) {  //Ini adalah fungsi yang akan dipanggil saat formulir pengeditan disubmit. 
         e.preventDefault();
-        put(route("posts.update", post.id)); //Ini menghasilkan URL rute pengeditan posting yang sesuai dengan ID posting yang sedang diedit. Ini akan digunakan oleh put untuk mengirim permintaan pembaruan ke server.
+        put(route("posts.update", post.id)); // Ini menghasilkan URL rute pengeditan posting yang sesuai dengan ID posting yang sedang diedit. Ini akan digunakan oleh put untuk mengirim permintaan pembaruan ke server.
     }
     return (
         <AuthenticatedLayout auth={props.auth} user={props.auth.user} errors={props.errors} header={<h2 className="font-semibold text-xl text-gray-800 leading-tight">Edit Post</h2>}>
